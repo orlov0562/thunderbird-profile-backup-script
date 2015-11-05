@@ -9,3 +9,19 @@ To run this script through cron do next:
 ```
 0 */4 * * * bash /path/to/script/ThunderbirdBackup.sh
 ```
+
+### Known bugs
+
+Do not use pathes with spaces in backup filename and backup folder path
+
+This bug come from awk - awk can't parse full path that contains spaces, example:
+```
+touch part1\ part2
+find . -type f -print0 | xargs -0 ls -l
+find . -type f -print0 | xargs -0 ls -lb
+find . -type f -print0 | xargs -0 ls -l | awk '{print $(NF)}'
+find . -type f -print0 | xargs -0 ls -lb | awk '{print $(NF)}'
+```
+As you see this code give only last part of the file: "part2", but we expect: "part1\ part2"
+
+I can fix it with another languages, like php or perl, but I wan't add extra dependecies now
