@@ -18,7 +18,7 @@ RESTART_THUNDERBIRD_IF_RUNNED=1
 IS_THUNDERBIRD_RUNNED=0
 
 # -----------------------------------------------------------------------
-echo STEP-1
+
 # Check if we already have backup for period
 
 if [ "$1" != "force" ]; then
@@ -32,16 +32,15 @@ if [ "$1" != "force" ]; then
 fi
 
 # -----------------------------------------------------------------------
-echo STEP-2
+
 # If thunderbird running ask user to close it
 # If user answer No, exiting
 # If user say Yes, than check again, if it still running ask again
 
 for ((i=1; i<=$ATTEMPTS_TO_STOP_THUNDERBIRD; i++))
 do
-echo STEP-2a
 	if pgrep "thunderbird" > /dev/null;	then
-echo STEP-2b
+
 		IS_THUNDERBIRD_RUNNED=1
 
 		if [ $i -eq 1 ]; then
@@ -49,22 +48,21 @@ echo STEP-2b
 		else
 			MSG="Thunderbird still running."
 		fi
-echo STEP-2c
+
 		zenity \
 			--question \
 			--title="Thunderbird backup" \
 			--text="$MSG\nCould you please close Thunderbird?" \
 			--display=:0.0 
-echo STEP-2d
+
 		# if No btn pressed exit
 		if [ $? -eq 1 ]; then exit; fi
-echo STEP-2e
+
 	else
-echo STEP-2f
 		break
 	fi
 done
-echo STEP-2g
+
 
 # If user say few times that he close thunderbird
 # but it still running, show error and exiting
@@ -76,7 +74,7 @@ then
 fi
 
 # -----------------------------------------------------------------------
-echo STEP-3
+
 # Now we can do backup
 # Note: to disable silent mode remove below ">/dev/null" and "-q" flag
 
@@ -103,7 +101,7 @@ if [[ $(find $BACKUP_FOLDER -type f -print -quit) ]]; then
 	done
 fi
 # -----------------------------------------------------------------------
-echo STEP-4
+
 # Show notify message that backup created
 
 if [ -f "$BACKUP_FOLDER/$BACKUP_FILENAME.zip" ];
@@ -114,7 +112,7 @@ else
 fi
 
 # -----------------------------------------------------------------------
-echo STEP-5
+
 # Start thunderbird if it running when script starts
 # and user shutdown it just for backup
 
