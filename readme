@@ -1,0 +1,11 @@
+For more information in RU see this article:
+http://www.it-rem.ru/perenos-profilya-thunderbird-na-drugoy-disk.html
+
+For configuration see comments in script header
+
+To run this script through cron do next:
+1) crontab -e
+2) Add next
+```
+0 */4 * * * bash /path/to/script/ThunderbirdBackup.sh
+```

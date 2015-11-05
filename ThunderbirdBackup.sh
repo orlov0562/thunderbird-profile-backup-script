@@ -3,6 +3,7 @@
 # -----------------------------------------------------------------------
 # Thunderbird profile backup script
 # See more information at: 
+# http://www.it-rem.ru/perenos-profilya-thunderbird-na-drugoy-disk.html
 # -----------------------------------------------------------------------
 
 #Configuration
