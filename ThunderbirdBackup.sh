@@ -68,24 +68,24 @@ do
         IS_THUNDERBIRD_RUNNED=1
 
         if [ $i -eq 1 ]; then
-                MSG="I want to do regular backup."
+            MSG="I want to do regular backup."
         else
-                MSG="Thunderbird still running."
+            MSG="Thunderbird still running."
         fi
 
         echo "$MSG. Could you please close Thunderbird?"
 
         zenity \
-                --question \
-                --title="Thunderbird backup" \
-                --text="$MSG\nCould you please close Thunderbird?" \
-                --display=:0.0
+            --question \
+            --title="Thunderbird backup" \
+            --text="$MSG\nCould you please close Thunderbird?" \
+            --display=:0.0
 
         # if No btn pressed exit
         if [ $? -eq 1 ]; then exit; fi
 
     else
-            break
+        break
     fi
 done
 
@@ -123,9 +123,9 @@ then
 
     for FILE in $FILES_LIST
     do
-            ((COUNTER--));
-            if [ $COUNTER -ge 0 ]; then continue; fi
-            rm $FILE
+        ((COUNTER--));
+        if [ $COUNTER -ge 0 ]; then continue; fi
+        rm $FILE
     done
 fi
 # -----------------------------------------------------------------------
